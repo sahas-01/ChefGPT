@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, ChefHat, Sparkles } from "lucide-react";
+import { ArrowRight, ChefHat, Sparkles, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function Home() {
@@ -24,15 +24,15 @@ export default function Home() {
         </p>
       </div>
 
-      <div className="flex flex-col sm:flex-row gap-4">
-        <Link href="/ingredients">
-          <Button size="lg" className="text-lg px-8 py-6 rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-105">
-            <Sparkles className="mr-2 w-5 h-5" />
+      <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center">
+        <Link href="/ingredients" className="w-full sm:w-auto">
+          <Button size="lg" className="w-full sm:w-64 h-14 text-lg rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-105 whitespace-nowrap">
+            <Sparkles className="mr-2 w-5 h-5 flex-shrink-0" />
             Find Recipes Now
           </Button>
         </Link>
-        <Link href="/favorites">
-          <Button variant="outline" size="lg" className="text-lg px-8 py-6 rounded-full border-2">
+        <Link href="/favorites" className="w-full sm:w-auto">
+          <Button variant="outline" size="lg" className="w-full sm:w-64 h-14 text-lg rounded-full border-2 whitespace-nowrap">
             View Favorites
           </Button>
         </Link>

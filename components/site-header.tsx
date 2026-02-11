@@ -7,21 +7,21 @@ export function SiteHeader() {
       <div className="container flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0">
         <Link href="/" className="flex items-center space-x-2">
           <UtensilsCrossed className="size-6 text-orange-500" />
-          <span className="text-xl font-bold tracking-tight text-orange-600">
+          <span className="lg:text-xl text-sm font-bold tracking-tight text-orange-600">
             Cooking Planner
           </span>
         </Link>
         <div className="flex flex-1 items-center justify-end space-x-4">
-          <nav className="flex items-center space-x-4">
+          <nav className="flex items-center space-x-4 md:space-x-6">
             <Link
               href="/ingredients"
-              className="text-sm font-medium transition-colors hover:text-orange-600"
+              className="text-sm font-medium transition-colors hover:text-orange-600 whitespace-nowrap"
             >
               Add Ingredients
             </Link>
             <Link
               href="/favorites"
-              className="flex items-center text-sm font-medium transition-colors hover:text-orange-600"
+              className="flex items-center text-sm font-medium transition-colors hover:text-orange-600 whitespace-nowrap"
             >
               <Heart className="mr-1 size-4" />
               Favorites

@@ -11,37 +11,38 @@ export async function POST(req: NextRequest) {
 
     const userIngredients = ingredients.map((i: any) => i.name).join(", ");
     
-    let taskInstruction = `1. Generate 5 distinct, authentic Indian recipes that can be made primarily with these ingredients. You can assume common pantry staples (oil, salt, spices, water) are available.`;
+    let taskInstruction = `1. Generate 5 distinct, delicious Indian recipes that primarily use the provided ingredients. Try to use AS MANY of the user's ingredients as possible.`;
+    
     if (cuisine) {
         taskInstruction = `1. Generate 5 authentic ${cuisine} Indian recipes using these ingredients. If the ingredients don't strictly fit, adapt them creatively to ${cuisine} style.`;
     }
 
-    const systemPrompt = `You are an expert Indian Home Chef with decades of experience. The user has these ingredients: ${userIngredients}.
+    const systemPrompt = `You are an expert Indian Home Chef. The user has these ingredients/notes: ${userIngredients}.
     
     Task:
     ${taskInstruction}
     
-    Guidelines for Authenticity & Quality:
-    - Recipes must be REAL and TESTED Indian home-style dishes. Do not invent non-existent dishes.
-    - If the ingredients are unusual for Indian cooking (e.g., avocado), suggest valid fusion or modern Indian adaptations (e.g., Avocado Chaat), but acknowledge it.
-    - INSTRUCTIONS: Must be step-by-step, detailed, and use Indian cooking terminology (e.g., "sauté until oil separates", "crackling spices").
-    - QUANTITIES: Assume standard Indian household quantities (e.g., serving 2-3 people).
-    - LANGUAGE: The response must be in ${language}. If the user asks for Hindi, use natural conversational Hindi.
+    Guidelines:
+    - **USE THE INGREDIENTS**: Prioritize recipes that use the user's specific ingredients.
+    - **SERVING SIZE**: Check if the user mentioned a number of people (e.g., "for 5 people"). If yes, scale quantities for that number. If not, default to 2-3 people.
+    - **LABELS**: Use "Indian" as the default label. Do NOT use terms like "Homestyle", "Street Food", "South Indian", or "North Indian". Only exception is if the dish is a specific famous regional specialty (e.g. "Hyderabadi Biryani").
+    - **AUTHENTICITY**: Recipes must be tasty and realistic.
+    - **LANGUAGE**: Respond in the same language as the user's input ingredients/notes. If the input is in English script, respond in English. If in Devanagari/Hindi, respond in Hindi. Fallback to ${language} only if unsure.
     
     Output Format:
-    - Provide a brief, friendly spoken summary of what you found.
-    - Return strict JSON format with this structure:
+    - Provide a brief, friendly spoken summary.
+    - Return strict JSON format:
     {
       "message": "Spoken summary text...",
       "recipes": [
         {
           "id": "generated_1",
           "name": "Recipe Name",
-          "region": "Region/Cuisine (e.g. Punjabi, South Indian)",
+          "region": "Indian", 
           "time": "XX mins",
           "difficulty": "Easy/Medium/Hard",
-          "ingredients": ["1 cup Rice", "2 tbsp Oil"], // Detailed with quantities
-          "steps": ["Step 1...", "Step 2..."], // Detailed steps
+          "ingredients": ["1 cup Rice", "2 tbsp Oil"], // Quantities adjusted for serving size
+          "steps": ["Step 1...", "Step 2..."],
           "description": "Short appetizing description"
         }
       ]

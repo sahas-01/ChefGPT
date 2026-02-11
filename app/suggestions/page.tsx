@@ -153,13 +153,13 @@ export default function SuggestionsPage() {
 
   return (
     <div className="space-y-8 pb-20">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="space-y-1">
           <h2 className="text-3xl font-bold tracking-tight">AI Chef Custom Menu</h2>
           <p className="text-muted-foreground">Recipes created just for your ingredients.</p>
         </div>
-        <Link href="/ingredients">
-          <Button variant="outline"><ArrowLeft className="mr-2 h-4 w-4" /> Edit Ingredients</Button>
+        <Link href="/ingredients" className="w-full md:w-auto self-start md:self-auto">
+          <Button variant="outline" className="w-full md:w-auto"><ArrowLeft className="mr-2 h-4 w-4" /> Edit Ingredients</Button>
         </Link>
       </div>
       
@@ -191,20 +191,18 @@ export default function SuggestionsPage() {
           
           {chefMessage && (
               <div className="animate-in fade-in slide-in-from-top-2">
-                  <div className="text-xl font-medium leading-relaxed italic border-l-4 border-orange-500 pl-6 py-2">
+                  <div className="text-lg md:text-xl font-medium leading-relaxed italic border-l-4 border-orange-500 pl-4 md:pl-6 py-2">
                       "{translatedSummary || chefMessage}"
                   </div>
-                  <div className="mt-2 ml-6">
-                       {!translatedSummary && (
-                           <Button 
-                              variant="ghost" 
-                              size="sm" 
-                              className="text-orange-600 hover:text-orange-700 hover:bg-orange-50 -ml-2"
-                              onClick={() => handleSpeak(chefMessage, localStorage.getItem("userLanguage") || "hi-IN")}
-                           >
-                              {isPlaying ? <><StopCircle className="w-4 h-4 mr-2" /> Stop</> : <><Volume2 className="w-4 h-4 mr-2" /> Listen to Chef</>}
-                           </Button>
-                       )}
+                  <div className="mt-2 ml-4 md:ml-6">
+                       <Button 
+                           variant="ghost" 
+                           size="sm" 
+                           className="text-orange-600 hover:text-orange-700 hover:bg-orange-50 -ml-2"
+                           onClick={() => handleSpeak(translatedSummary || chefMessage, localStorage.getItem("userLanguage") || "hi-IN")}
+                       >
+                           {isPlaying ? <><StopCircle className="w-4 h-4 mr-2" /> Stop</> : <><Volume2 className="w-4 h-4 mr-2" /> Listen to Chef</>}
+                       </Button>
                   </div>
               </div>
           )}
