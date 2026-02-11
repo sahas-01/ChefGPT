@@ -1,61 +1,74 @@
-# Cooking Planner 🍛
+# Cooking Planner
 
-An intelligent, AI-powered recipe assistant for authentic Indian cuisine. Uses your leftover ingredients to suggest delicious meals, complete with voice interaction and Hindi audio guidance.
-
-![Cooking Planner](https://img.shields.io/badge/Next.js-14-black) ![Tailwind CSS](https://img.shields.io/badge/Tailwind-CSS-blue) ![Sarvam AI](https://img.shields.io/badge/Sarvam-AI-orange)
+An AI-powered web application that helps you discover authentic Indian recipes using the ingredients you already have at home. It features voice interaction for a hands-free cooking experience.
 
 ## Features
 
-- **Fridge-First Design**: Input your leftover ingredients manually or via **Voice**.
-- **Authentic Recipes**: Database of 40+ authentic Indian recipes (North, South, East, West).
-- **Smart Matching**: Prioritizes recipes using your ingredients, especially those expiring soon.
-- **AI Chef (Sarvam-M)**: Ask the AI for personalized suggestions and hear the response in Hindi!
-- **Read Aloud**: Listen to any recipe's instructions using high-quality Indian TTS (Sarvam Bulbul v3).
-- **Favorites**: Save your best finds for later (Local interactions only, no login required).
-- **Responsive**: Beautiful mobile-first UI with Indian aesthetics.
+- **Smart Ingredient Input**: Type or simply speak your ingredients. The app understands English, Hindi, and mixed language input.
+- **AI Recipe Generation**: Creates personalized recipes based on your specific ingredients and preferences.
+- **Voice Interaction**: 
+  - **Speech-to-Text**: Dictate your ingredients using advanced voice recognition.
+  - **Text-to-Speech**: Listen to recipes and instructions read aloud by the AI Chef.
+- **Translation**: Translate recipes and instructions between English and Indian languages.
+- **Favorites**: Save your favorite recipes directly to your browser for quick access.
+- **Mobile Responsive**: Works seamlessly on both desktop and mobile devices.
+
+## How It Works
+
+1. **Add Ingredients**: Enter what you have in your fridge manually or by clicking the microphone button to speak.
+2. **Get Suggestions**: The AI Chef analyzes your ingredients and suggests authentic Indian dishes you can cook.
+3. **Cook & Listen**: detailed recipes are generated. You can read them or have the AI read them out to you while you cook.
+
+## Architecture
+
+This application uses a modern web stack integrated with Sarvam AI services for intelligence.
+
+[User Interface] <-> [Next.js Server API] <-> [Sarvam AI Services]
+      |                                              |
+      v                                              v
+[Local Storage]                             [LLM / STT / TTS Models]
+
+- **User Interface**: Handles input and displays recipes.
+- **Next.js Server**: Securely manages API keys and communicates with AI services.
+- **Sarvam AI**: Provides the core intelligence (Speech recognition, Language generation, Text-to-Speech).
+- **Local Storage**: Persists your favorite recipes on your device.
 
 ## Tech Stack
 
-- **Framework**: Next.js 14 (App Router)
+- **Frontend Framework**: Next.js 14 (App Router)
+- **Styling**: Tailwind CSS
 - **Language**: TypeScript
-- **Styling**: Tailwind CSS + Shadcn UI (Radix)
-- **AI & TTS**: Sarvam AI (Sarvam-M for chat, Bulbul:v3 for speech)
+- **AI Integration**:
+  - **Chat/Generation**: Sarvam-M (OpenAI compatible)
+  - **Speech-to-Text**: Sarvam Saaras (v3)
+  - **Text-to-Speech**: Sarvam Bulbul
+  - **Translation**: Sarvam Translate
 - **Icons**: Lucide React
-- **Voice Input**: Web Speech API
 
 ## Getting Started
 
+Follow these steps to run the project locally:
+
 1. **Clone the repository**:
    ```bash
-   git clone <repo-url>
-   cd cooking-planner
+   git clone https://github.com/sahas-01/ChefGPT.git
+   cd ChefGPT
    ```
 
 2. **Install dependencies**:
    ```bash
    npm install
    ```
-   *Note: Using legacy peer deps might be needed if conflicts arise.*
 
 3. **Configure Environment**:
-   - Create a `.env.local` file in the root.
-   - Add your Sarvam AI API Key:
+   - Create a file named `.env.local` in the root directory.
+   - Get your Sarvam AI API Key from <a href="dashboard.sarvam.ai">here</a> and add it to your environment variables:
      ```env
-     SARVAM_API_KEY=your_actual_api_key_here
+     SARVAM_API_KEY=your_api_key_here
      ```
-   - Get your key from [Sarvam Dashboard](https://dashboard.sarvam.ai).
 
 4. **Run the Development Server**:
    ```bash
    npm run dev
    ```
-   Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-## Voice Input Note
-Voice recognition relies on the browser's Web Speech API. For the best experience, use **Google Chrome** or **Edge** on desktop or Android. Safari has limited support.
-
-## Future Plans
-- [ ] User accounts for cross-device sync.
-- [ ] Grocery list generation.
-- [ ] Image recognition for ingredients (snap a photo of your fridge!).
-- [ ] Regional language UI translation.
+   Open http://localhost:3000 in your browser.
