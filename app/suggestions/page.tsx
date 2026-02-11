@@ -54,8 +54,13 @@ export default function SuggestionsPage() {
   }, []);
 
   const handleTranslate = async () => {
+      if (translatedSummary) {
+          setTranslatedSummary(null);
+          return;
+      }
+
       if (!chefMessage) return;
-      // Get language code from local storage or default
+      
       const lang = localStorage.getItem("userLanguage") || "hi-IN";
       if (lang.startsWith("en")) {
           toast.info("Already in English!");
@@ -63,9 +68,13 @@ export default function SuggestionsPage() {
       }
       
       try {
-          const res = await translate({ text: chefMessage, source_language_code: lang });
+          const res = await translate({ text: chefMessage, source_language_code: lang, target_language_code: "en-IN" });
           if (res.translated_text) {
-              setTranslatedSummary(res.translated_text);
+              const cleanedText = res.translated_text
+                  .replace(/^(Here is the translation.*?:\s*|Translation:\s*)/i, "")
+                  .replace(/^"(.*)"$/, "$1")
+                  .trim();
+              setTranslatedSummary(cleanedText);
           }
       } catch (e) {
           console.error("Translation fail", e);
@@ -157,7 +166,7 @@ export default function SuggestionsPage() {
       {/* AI Chef Section - Simplified */}
       <div className="space-y-4">
           <div className="flex justify-end gap-2">
-               {chefMessage && !translatedSummary && (
+                {chefMessage && (
                    <Button 
                        variant="outline"
                        size="sm"
@@ -166,7 +175,7 @@ export default function SuggestionsPage() {
                        className="text-muted-foreground hover:text-foreground"
                    >
                         {isTranslating ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : <Globe className="w-4 h-4 mr-2" />}
-                        Translate
+                        {translatedSummary ? "Show Original" : "Translate"}
                    </Button>
                )}
                <Button 
@@ -183,7 +192,7 @@ export default function SuggestionsPage() {
           {chefMessage && (
               <div className="animate-in fade-in slide-in-from-top-2">
                   <div className="text-xl font-medium leading-relaxed italic border-l-4 border-orange-500 pl-6 py-2">
-                      "{chefMessage}"
+                      "{translatedSummary || chefMessage}"
                   </div>
                   <div className="mt-2 ml-6">
                        {!translatedSummary && (

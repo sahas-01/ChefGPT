@@ -18,7 +18,10 @@ export async function POST(req: NextRequest) {
     const sarvamFormData = new FormData();
     sarvamFormData.append("file", file);
     sarvamFormData.append("model", "saaras:v3");
-    sarvamFormData.append("mode", "transcribe"); // transcribe preserves original language (e.g. Hindi/English mix)
+    // User wants to support ANY of 22 languages and code-switching (Hindi -> Tamil -> English).
+    // "codemix" mode is perfect for this: "Code-mixed text with English words in English and Indic words in native script."
+    // It preserves the original language spoken while handling English terms naturally.
+    sarvamFormData.append("mode", "codemix");
     // We do NOT send language_code, so Sarvam auto-detects it.
     // Saaras v3 returns "language_code" in response.
 

@@ -75,14 +75,14 @@ export function useAiChef() {
   });
 
   const translateMutation = useMutation({
-      mutationFn: async (payload: { text: string; source_language_code: string }) => {
+      mutationFn: async (payload: { text: string; source_language_code: string; target_language_code?: string }) => {
           const res = await fetch("/api/translate", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({ 
                   input: payload.text, 
                   source_language_code: payload.source_language_code, 
-                  target_language_code: "en-IN" 
+                  target_language_code: payload.target_language_code || "en-IN" 
               })
           });
           if (!res.ok) throw new Error("Translation failed");

@@ -1,12 +1,11 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
-import { Mic, MicOff, Plus, Trash2, ArrowRight, Loader2, Sparkles } from "lucide-react";
+import { Mic, MicOff, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { toast } from "sonner";
-import { useIngredients } from "@/hooks/use-ingredients";
+// import { useIngredients } from "@/hooks/use-ingredients";
 
 export default function IngredientsPage() {
   const router = useRouter();
@@ -17,8 +16,8 @@ export default function IngredientsPage() {
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const chunksRef = useRef<Blob[]>([]);
   
-  // Use React Query Hook
-  const { ingredients, addIngredients, removeIngredient, toggleExpiring } = useIngredients();
+  // Use React Query Hook - keeping for now if used elsewhere but not used in render
+  // const { ingredients, addIngredients, removeIngredient, toggleExpiring } = useIngredients();
 
   const toggleRecording = async () => {
     if (isRecording) {
@@ -101,9 +100,8 @@ export default function IngredientsPage() {
             toast.success(`Cuisine detected: ${detected}`);
         }
 
-        setInput(transcript);
-        // Removed handleAddItem(transcript) to allow editing
-        toast.success("Speech captured. Review and add.");
+        setInput(prev => (prev ? prev + " " + transcript : transcript)); 
+        toast.success("Speech captured.");
       } else {
         toast.warning("Could not understand audio");
       }
@@ -115,35 +113,36 @@ export default function IngredientsPage() {
     }
   };
 
-  const handleAddItem = (val: string) => {
-    const raw = val.trim();
-    if (!raw) return;
-    
-    // Split by comma or 'and' if spoken naturally
-    const items = raw.split(/,| and /).map(s => s.trim()).filter(Boolean);
-    
-    addIngredients(items);
-    setInput("");
-  };
-
-  const handleRemoveItem = (id: string) => {
-    removeIngredient(id);
-  };
-
-  const handleToggleExpiring = (id: string) => {
-    toggleExpiring(id);
-  };
-
   const handleFindRecipes = () => {
-    if (ingredients.length === 0) {
-      toast.warning("Please add at least one ingredient!");
+    if (!input.trim()) {
+      toast.warning("Please describe what you have in the text box!");
       return;
     }
+    
+    // Parse input into array simply by splitting by common delimiters
+    const raw = input.trim();
+    // Split by comma, new line, or 'and' - simple heuristic
+    const items = raw.split(/[,\n]| and /).map(s => s.trim()).filter(s => s.length > 0);
+    
+    if (items.length === 0) {
+        toast.warning("Could not identify ingredients.");
+        return;
+    }
+
+    // Convert to objects to match API expectation
+    const ingredientObjects = items.map((name, idx) => ({ 
+        id: `ing-${Date.now()}-${idx}`, 
+        name 
+    }));
+
+    // Save to localStorage so suggestions page can read it
+    localStorage.setItem("ingredients", JSON.stringify(ingredientObjects));
+    console.log("ingredients", ingredientObjects);
     router.push("/suggestions");
   };
 
   return (
-    <div className="max-w-4xl mx-auto space-y-8 pb-20">
+    <div className="max-w-4xl mx-auto min-h-[calc(100vh-100px)] flex flex-col justify-center space-y-8 pb-20">
       <div className="text-center space-y-2">
         <h1 className="text-3xl font-bold tracking-tight">What's in your Kitchen?</h1>
         <p className="text-muted-foreground">
@@ -151,69 +150,38 @@ export default function IngredientsPage() {
         </p>
       </div>
 
-      <div className="flex flex-col gap-4">
-        <div className="relative">
-             <textarea 
-               value={input}
-               onChange={(e) => setInput(e.target.value)}
-               placeholder="e.g. potatoes, onions, paneer (Type or Speak)"
-               className="flex min-h-[120px] w-full rounded-md border border-input bg-background px-3 py-2 text-lg ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 min-h-[120px] p-4 pr-16 resize-none shadow-sm"
-               onKeyDown={(e) => {
-                 if(e.key === "Enter" && !e.shiftKey) {
-                   e.preventDefault(); 
-                   handleAddItem(input);
-                 }
-               }}
-             />
-             <Button 
-               size="icon" 
-               variant={isRecording ? "destructive" : "secondary"}
-               onClick={toggleRecording}
-               className="absolute right-4 bottom-4 h-10 w-10 shadow-sm"
-               title="Speak Ingredients"
-             >
-               {isRecording ? <MicOff className="h-5 w-5 animate-pulse" /> : <Mic className="h-5 w-5" />}
-             </Button>
-        </div>
-
-        <Button onClick={() => handleAddItem(input)} className="h-12 w-full text-lg shadow-sm" disabled={!input.trim()}>
-          <Plus className="mr-2 h-5 w-5" /> Add to Pantry
-        </Button>
+      <div className="w-full max-w-2xl mx-auto relative shadow-xl rounded-xl border border-border bg-card">
+           <textarea 
+             value={input}
+             onChange={(e) => setInput(e.target.value)}
+             placeholder="Example: I have paneer, onions, tomatoes and some spices. What can I make? (Type or Speak)"
+             className="flex min-h-[200px] w-full rounded-xl bg-transparent px-6 py-6 text-lg placeholder:text-muted-foreground focus:outline-none resize-none"
+             onKeyDown={(e) => {
+               if(e.key === "Enter" && !e.shiftKey) {
+                 e.preventDefault(); 
+                 handleFindRecipes();
+               }
+             }}
+           />
+           <div className="absolute right-4 bottom-4 flex gap-2">
+               <Button 
+                   size="icon" 
+                   variant={isRecording ? "destructive" : "secondary"}
+                   onClick={toggleRecording}
+                   className="h-10 w-10 rounded-full shadow-sm hover:scale-105 transition-all"
+                   title="Speak Ingredients"
+               >
+                   {isRecording ? <MicOff className="h-5 w-5 animate-pulse" /> : <Mic className="h-5 w-5" />}
+               </Button>
+           </div>
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {ingredients.map((item) => (
-          <Card key={item.id} className={`transition-all ${item.expiring ? "border-red-400 bg-red-50 dark:bg-red-900/10" : "hover:border-orange-200"}`}>
-            <CardContent className="p-4 flex items-center justify-between">
-              <div className="space-y-1">
-                <p className="font-medium capitalize">{item.name}</p>
-                <div 
-                  className={`text-xs px-2 py-0.5 rounded-full cursor-pointer w-fit ${item.expiring ? "bg-red-100 text-red-700 font-semibold" : "bg-secondary text-muted-foreground hover:bg-red-50 hover:text-red-600"}`}
-                  onClick={() => handleToggleExpiring(item.id)}
-                >
-                  {item.expiring ? "Expiring Soon!" : "Mark as expiring"}
-                </div>
-              </div>
-              <Button variant="ghost" size="icon" onClick={() => handleRemoveItem(item.id)} className="text-muted-foreground hover:text-destructive">
-                <Trash2 className="h-4 w-4" />
-              </Button>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-
-      {ingredients.length === 0 && (
-        <div className="text-center py-12 text-muted-foreground bg-secondary/20 rounded-xl border border-dashed">
-          <p>No ingredients added yet.</p>
-        </div>
-      )}
-
-      <div className="fixed bottom-8 left-0 right-0 flex justify-center px-4">
+      <div className="flex justify-center pt-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
         <Button 
           size="lg" 
           onClick={handleFindRecipes} 
-          disabled={ingredients.length === 0}
-          className="w-full max-w-md shadow-2xl text-lg h-14 rounded-full animate-in slide-in-from-bottom-4 duration-500"
+          disabled={!input.trim()}
+          className="w-full max-w-sm shadow-xl hover:shadow-2xl transition-all hover:scale-105 active:scale-95 text-lg h-14 rounded-full bg-orange-600 hover:bg-orange-700 text-white"
         >
           Ask AI Chef for Recipes <Sparkles className="ml-2 h-5 w-5" />
         </Button>

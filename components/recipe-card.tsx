@@ -41,6 +41,7 @@ export function RecipeCard({ recipe, isFavorite, onToggleFavorite, matchingIngre
 
   // Display either the translated version or the original
   const displayRecipe = translatedRecipe || recipe;
+  console.log(displayRecipe);
 
   const handleTranslateCard = async () => {
     if (translatedRecipe) return; 
@@ -95,11 +96,17 @@ export function RecipeCard({ recipe, isFavorite, onToggleFavorite, matchingIngre
         }
 
         const translatedIngredients = ingRes.translated_text 
-            ? ingRes.translated_text.split("\n").map(s => s.trim()).filter(s => s.length > 0)
+            ? ingRes.translated_text
+                .split("\n")
+                .map(s => s.trim())
+                .filter(s => s.length > 0 && !s.match(/^(Here is the translation|Translation:|Sure,|Certainly|Here are)/i))
             : recipe.ingredients;
 
         const translatedSteps = stepsRes.translated_text
-            ? stepsRes.translated_text.split("\n").map(s => s.trim()).filter(s => s.length > 0)
+            ? stepsRes.translated_text
+                .split("\n")
+                .map(s => s.trim())
+                .filter(s => s.length > 0 && !s.match(/^(Here is the translation|Translation:|Sure,|Certainly|Here are)/i))
             : recipe.steps;
 
         setTranslatedRecipe({
@@ -207,7 +214,14 @@ export function RecipeCard({ recipe, isFavorite, onToggleFavorite, matchingIngre
                  </li>
                );
             })}
-            {displayRecipe.ingredients.length > 4 && <li className="text-gray-500 italic">+{displayRecipe.ingredients.length - 4} more...</li>}
+            {displayRecipe.ingredients.length > 4 && (
+                <li 
+                    className="text-gray-500 italic cursor-pointer hover:text-orange-600 hover:underline"
+                    onClick={() => setIsModalOpen(true)}
+                >
+                    +{displayRecipe.ingredients.length - 4} more...
+                </li>
+            )}
           </ul>
         </div>
         

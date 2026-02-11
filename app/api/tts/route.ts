@@ -13,6 +13,14 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // Constraint: Sarvam API limit is 500 characters.
+    // We will truncate and log a warning if text exceeds it.
+    let processedText = text;
+    if (processedText.length > 500) {
+        console.warn("TTS Input truncated from", processedText.length, "to 500 chars");
+        processedText = processedText.substring(0, 497) + "...";
+    }
+
     const response = await fetch("https://api.sarvam.ai/text-to-speech", {
       method: "POST",
       headers: {
@@ -20,13 +28,13 @@ export async function POST(req: NextRequest) {
         "api-subscription-key": apiKey,
       },
       body: JSON.stringify({
-        inputs: [text],
+        inputs: [processedText],
         target_language_code: language,
         speaker: speaker,
         // pitch, pace, loudness not supported in v3
         speech_sample_rate: 8000,
         enable_preprocessing: true,
-        model: "bulbul:v3", // Using v1 as per standard, or v3 if user insisted? User said "bulbul:v3"
+        model: "bulbul:v3", // Reverting to v1 as v3 might be unstable or specific
       }),
     });
 

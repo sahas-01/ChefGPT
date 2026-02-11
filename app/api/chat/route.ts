@@ -49,6 +49,7 @@ export async function POST(req: NextRequest) {
     
     Do not include markdown formatting, backticks, or any other text. Just the raw JSON string.`;
 
+    // Use correct endpoint for OpenAI-compatible chat
     const response = await fetch("https://api.sarvam.ai/v1/chat/completions", {
       method: "POST",
       headers: {
@@ -56,13 +57,13 @@ export async function POST(req: NextRequest) {
         "Authorization": `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
-        model: "sarvam-m",
+        model: "sarvam-m", // Reverting to user-specified model
         messages: [
-            { role: "system", content: "You are a helpful assistant that outputs only valid JSON." },
+            { role: "system", content: "You are a helpful assistant found at providing accurate JSON outputs." },
             { role: "user", content: systemPrompt }
         ],
-        temperature: 0.3, // Slightly creative but structured
-        max_tokens: 2500,
+        temperature: 0.3, 
+        max_tokens: 3500, // Increased to ensure 5 recipes don't get truncated
       }),
     });
 
