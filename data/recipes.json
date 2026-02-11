@@ -1,0 +1,516 @@
+[
+    {
+        "id": "1",
+        "name": "Aloo Gobi",
+        "region": "North Indian",
+        "ingredients": [
+            "2 potatoes (aloo), cubed",
+            "1 cauliflower (gobi), florets",
+            "2 onions, finely chopped",
+            "2 tomatoes, chopped",
+            "1 tsp ginger-garlic paste",
+            "1 tsp cumin seeds",
+            "1/2 tsp turmeric powder",
+            "1 tsp coriander powder",
+            "1/2 tsp garam masala",
+            "Fresh coriander leaves"
+        ],
+        "steps": [
+            "Heat oil in a pan, add cumin seeds.",
+            "Add onions and sauté until golden brown.",
+            "Add ginger-garlic paste and sauté for a minute.",
+            "Add tomatoes and cook until soft.",
+            "Add turmeric, coriander powder, and salt.",
+            "Add potatoes and cauliflower, mix well.",
+            "Cover and cook on low heat for 15-20 minutes until tender.",
+            "Sprinkle garam masala and garnish with coriander."
+        ],
+        "time": "30 mins",
+        "difficulty": "Easy",
+        "description": "A classic North Indian dry curry made with potatoes and cauliflower."
+    },
+    {
+        "id": "2",
+        "name": "Dal Tadka",
+        "region": "North Indian",
+        "ingredients": [
+            "1 cup toor dal (pigeon peas)",
+            "1 onion, chopped",
+            "2 tomatoes, chopped",
+            "2 green chilies, slit",
+            "1 tsp ginger-garlic paste",
+            "1 tsp cumin seeds",
+            "1/2 tsp turmeric powder",
+            "1 tsp mustard seeds",
+            "2 dried red chilies",
+            "Ghee for tempering"
+        ],
+        "steps": [
+            "Pressure cook dal with turmeric and salt until soft.",
+            "Heat ghee in a pan, add mustard seeds, cumin seeds, and dried red chilies.",
+            "Add onions, ginger-garlic paste, green chilies and sauté.",
+            "Add tomatoes and cook until mushy.",
+            "Pour this tadka (tempering) over the cooked dal.",
+            "Simmer for 5 minutes and serve hot with rice."
+        ],
+        "time": "25 mins",
+        "difficulty": "Easy",
+        "description": "Creamy lentils tempered with aromatic spices."
+    },
+    {
+        "id": "3",
+        "name": "Chicken Curry",
+        "region": "North Indian",
+        "ingredients": [
+            "500g chicken, curry cut",
+            "2 onions, sliced",
+            "2 tomatoes, pureed",
+            "1 tbsp ginger-garlic paste",
+            "1 tsp cumin powder",
+            "1 tsp coriander powder",
+            "1/2 tsp turmeric powder",
+            "1 tsp red chili powder",
+            "1 tsp garam masala",
+            "Coriander leaves"
+        ],
+        "steps": [
+            "Marinate chicken with turmeric and salt for 15 mins.",
+            "Heat oil, sauté onions until golden.",
+            "Add ginger-garlic paste and cook for 2 mins.",
+            "Add tomato puree and spices (cumin, coriander, chili). Cook until oil separates.",
+            "Add chicken and sear on high heat.",
+            "Add water, cover, and simmer for 20 mins until chicken is cooked.",
+            "Sprinkle garam masala and garnish."
+        ],
+        "time": "45 mins",
+        "difficulty": "Medium",
+        "description": "A comforting home-style chicken curry."
+    },
+    {
+        "id": "4",
+        "name": "Paneer Butter Masala",
+        "region": "North Indian",
+        "ingredients": [
+            "200g paneer, cubed",
+            "2 onions, paste",
+            "3 tomatoes, puree",
+            "1 tbsp butter",
+            "1 tbsp cream",
+            "1 tsp ginger-garlic paste",
+            "1 tsp kasuri methi",
+            "1 tsp red chili powder",
+            "1/2 tsp garam masala",
+            "Cashew nuts (optional)"
+        ],
+        "steps": [
+            "Heat butter in a pan, sauté onion paste until brown.",
+            "Add ginger-garlic paste and tomato puree. Cook well.",
+            "Add turmeric, chili powder, and salt.",
+            "Add water and simmer to form a thick gravy.",
+            "Add paneer cubes and cook for 2-3 minutes.",
+            "Stir in cream and crushed kasuri methi (fenugreek leaves)."
+        ],
+        "time": "30 mins",
+        "difficulty": "Medium",
+        "description": "Rich and creamy paneer cubes in a buttery tomato gravy."
+    },
+    {
+        "id": "5",
+        "name": "Vegetable Pulao",
+        "region": "Pan-Indian",
+        "ingredients": [
+            "1 cup basmati rice",
+            "1/2 cup mixed vegetables (carrots, peas, beans)",
+            "1 onion, sliced",
+            "1 cinnamon stick",
+            "2 cloves",
+            "1 bay leaf",
+            "1 tsp cumin seeds",
+            "1 tbsp ghee"
+        ],
+        "steps": [
+            "Wash and soak rice for 20 mins.",
+            "Heat ghee in a pot, add whole spices (cumin, cinnamon, cloves, bay leaf).",
+            "Add onions and sauté.",
+            "Add vegetables and rice, stir gently.",
+            "Add 2 cups water and salt. Bring to boil.",
+            "Cover and cook on low heat until water is absorbed and rice is fluffy."
+        ],
+        "time": "25 mins",
+        "difficulty": "Easy",
+        "description": "A fragrant one-pot rice dish with vegetables."
+    },
+    {
+        "id": "6",
+        "name": "Masala Dosa",
+        "region": "South Indian",
+        "ingredients": [
+            "Dosa batter (store bought or homemade)",
+            "3 potatoes, boiled and mashed",
+            "1 onion, chopped",
+            "1 tsp mustard seeds",
+            "1/2 tsp turmeric powder",
+            "Curry leaves",
+            "Green chilies"
+        ],
+        "steps": [
+            "Heat oil, pop mustard seeds, add curry leaves and chilies.",
+            "Add onions and sauté until translucent.",
+            "Add turmeric and mashed potatoes. Mix well to make the masala filling.",
+            "Heat a tawa (griddle), spread a ladle of batter thin.",
+            "Drizzle oil/ghee around edges.",
+            "When crispy, place a spoonful of potato masala inside and fold."
+        ],
+        "time": "20 mins",
+        "difficulty": "Medium",
+        "description": "Crispy fermented crepe filled with spiced potato masala."
+    },
+    {
+        "id": "7",
+        "name": "Idli Sambar",
+        "region": "South Indian",
+        "ingredients": [
+            "Idli batter",
+            "1/2 cup toor dal",
+            "1 tbsp sambar powder",
+            "Mixed veggies (drumstick, carrot, pumpkin)",
+            "Tamarind extract",
+            "Mustard seeds",
+            "Curry leaves"
+        ],
+        "steps": [
+            "Steam idli batter in molds for 10-12 mins.",
+            "Cook dal with veggies until soft.",
+            "Add tamarind extract, sambar powder, and salt. Boil.",
+            "Temper with mustard seeds and curry leaves.",
+            "Serve hot idlis with sambar."
+        ],
+        "time": "30 mins",
+        "difficulty": "Easy",
+        "description": "Steamed rice cakes served with lentil and vegetable stew."
+    },
+    {
+        "id": "8",
+        "name": "Chole Bhature",
+        "region": "Punjabi",
+        "ingredients": [
+            "1 cup chickpeas (chole), soaked overnight",
+            "2 tea bags (for color)",
+            "2 onions, chopped",
+            "2 tomatoes, chopped",
+            "2 tsp chole masala",
+            "All-purpose flour (maida) for bhature",
+            "Yogurt"
+        ],
+        "steps": [
+            "Pressure cook chickpeas with tea bags until soft.",
+            "Sauté onions, ginger-garlic paste, and tomatoes.",
+            "Add chole masala and cooked chickpeas. Simmer.",
+            "For bhature: knead flour with yogurt and salt. Rest for 2 hrs.",
+            "Roll into circles and deep fry until puffed.",
+            "Serve chole with hot bhature."
+        ],
+        "time": "60 mins",
+        "difficulty": "Hard",
+        "description": "Spicy chickpeas served with fluffy deep-fried bread."
+    },
+    {
+        "id": "9",
+        "name": "Butter Chicken",
+        "region": "North Indian",
+        "ingredients": [
+            "500g chicken breast, cubed",
+            "1 cup tomato puree",
+            "2 tbsp butter",
+            "1/2 cup heavy cream",
+            "1 tbsp cashew paste",
+            "1 tsp kasuri methi",
+            "1 tsp garam masala",
+            "1 tsp red chili powder"
+        ],
+        "steps": [
+            "Marinate chicken with yogurt and spices. Grill or pan-fry.",
+            "Heat butter, add tomato puree, cook until reduced.",
+            "Add cashew paste, spices, and cream. Simmer.",
+            "Add cooked chicken pieces.",
+            "Simmer for 10 mins. Garnish with cream and kasuri methi."
+        ],
+        "time": "45 mins",
+        "difficulty": "Medium",
+        "description": "Global favorite, sweet and spicy creamy chicken."
+    },
+    {
+        "id": "10",
+        "name": "Palak Paneer",
+        "region": "North Indian",
+        "ingredients": [
+            "200g paneer cubes",
+            "1 bunch spinach (palak)",
+            "1 onion, chopped",
+            "1 tomato, chopped",
+            "1 tsp ginger-garlic paste",
+            "1 tsp cumin seeds",
+            "1/2 tsp garam masala",
+            "2 tbsp cream"
+        ],
+        "steps": [
+            "Blanch spinach in boiling water for 2 mins, then ice bath. Puree it.",
+            "Heat oil, add cumin, onions, ginger-garlic. Sauté.",
+            "Add tomatoes and cook.",
+            "Add spinach puree and spices. Simmer for 5 mins.",
+            "Add paneer cubes and cream. Cook for 2 mins."
+        ],
+        "time": "25 mins",
+        "difficulty": "Easy",
+        "description": "Cottage cheese in a nutritious spinach gravy."
+    },
+    {
+        "id": "11",
+        "name": "Rajma Masala",
+        "region": "North Indian",
+        "ingredients": [
+            "1 cup kidney beans (rajma), soaked",
+            "2 onions, chopped",
+            "2 tomatoes, pureed",
+            "1 tsp ginger-garlic paste",
+            "1 tsp cumin seeds",
+            "1 tsp rajma masala or garam masala",
+            "Coriander leaves"
+        ],
+        "steps": [
+            "Pressure cook rajma until very soft.",
+            "Sauté onions and ginger-garlic paste.",
+            "Add tomato puree and spices. Cook until oil separates.",
+            "Add cooked rajma and some water. Mash a few beans to thicken gravy.",
+            "Simmer for 15 mins. Serve with rice."
+        ],
+        "time": "40 mins",
+        "difficulty": "Easy",
+        "description": "Comfort food featuring red kidney beans in thick gravy."
+    },
+    {
+        "id": "12",
+        "name": "Kerala Fish Curry",
+        "region": "South Indian (Kerala)",
+        "ingredients": [
+            "500g fish firm (Kingfish/Seer)",
+            "3 pieces kudampuli (gamboge/kokum)",
+            "1 cup coconut milk (optional style)",
+            "10 shallots",
+            "1 tsp mustard seeds",
+            "2 tsp kashmiri chili powder",
+            "Curry leaves",
+            "Coconut oil"
+        ],
+        "steps": [
+            "Soak kokum in water.",
+            "Make a paste of chili powder and turmeric.",
+            "Heat coconut oil in earthen pot (chatti), add mustard, curry leaves, shallots.",
+            "Add spice paste and cook (don't burn).",
+            "Add water and kokum. Bring to boil.",
+            "Add fish pieces. Swirl the pot (don't stir with spoon).",
+            "Cook covered until fish is done. Drizzle fresh coconut oil."
+        ],
+        "time": "30 mins",
+        "difficulty": "Medium",
+        "description": "Tangy and spicy fish curry made with kokum."
+    },
+    {
+        "id": "13",
+        "name": "Poha",
+        "region": "West Indian (Maharashtra)",
+        "ingredients": [
+            "2 cups flattened rice (poha), thick",
+            "1 onion, chopped",
+            "1 potato, cubed and boiled",
+            "2 tbsp peanuts",
+            "1 tsp mustard seeds",
+            "1/2 tsp turmeric powder",
+            "Green chilies",
+            "Lemon juice"
+        ],
+        "steps": [
+            "Rinse poha in colander, drain immediately.",
+            "Heat oil, fry peanuts until crunchy. Set aside.",
+            "In same oil, add mustard seeds, chilies, onions, potatoes.",
+            "Add turmeric and salt.",
+            "Add rinsed poha and mix gently.",
+            "Cover and steam for 2 mins.",
+            "Garnish with lemon juice, coriander, and peanuts."
+        ],
+        "time": "15 mins",
+        "difficulty": "Easy",
+        "description": "Light, fluffy flattened rice breakfast dish."
+    },
+    {
+        "id": "14",
+        "name": "Upma",
+        "region": "South Indian",
+        "ingredients": [
+            "1 cup semolina (rava/sooji)",
+            "1 onion, chopped",
+            "1 tsp mustard seeds",
+            "1 tsp urad dal",
+            "1 tsp chana dal",
+            "Green chilies",
+            "Ginger, chopped",
+            "Mixed veggies (optional)"
+        ],
+        "steps": [
+            "Dry roast rava until fragrant. Set aside.",
+            "Heat oil, add mustards, dals, curry leaves, ginger, chilies.",
+            "Add onions and veggies if using. Sauté.",
+            "Add 3 cups water and salt. Boil.",
+            "Slowly add rava while stirring efficiently to avoid lumps.",
+            "Cover and cook on low for 3 mins."
+        ],
+        "time": "15 mins",
+        "difficulty": "Medium",
+        "description": "Savoury porridge made from dry roasted semolina."
+    },
+    {
+        "id": "15",
+        "name": "Vada Pav",
+        "region": "West Indian (Mumbai)",
+        "ingredients": [
+            "4 potatoes, boiled and mashed",
+            "Pav buns",
+            "Gram flour (besan) for batter",
+            "Green chutney",
+            "Garlic chutney (dry)",
+            "Mustard seeds",
+            "Green chilies",
+            "Curry leaves"
+        ],
+        "steps": [
+            "Temper mashed potatoes with mustard, curry leaves, turmeric, crushed garlic-chili.",
+            "Make small balls of potato mix.",
+            "Dip in thick salted besan batter.",
+            "Deep fry until golden.",
+            "Slit pav, spread chutneys, place vada inside."
+        ],
+        "time": "40 mins",
+        "difficulty": "Medium",
+        "description": "India's version of a burger - potato fritter in a bun."
+    },
+    {
+        "id": "16",
+        "name": "Chicken Biryani",
+        "region": "Hyderabadi",
+        "ingredients": [
+            "500g chicken",
+            "2 cups basmati rice",
+            "1 cup yogurt",
+            "Fried onions (birista)",
+            "Mint and coriander leaves",
+            "Biryani masala",
+            "Saffron milk",
+            "Whole spices (cardamom, clove, cinnamon)"
+        ],
+        "steps": [
+            "Marinate chicken with yogurt, spices, herbs, fried onions for 1 hr.",
+            "Par-boil rice with whole spices until 70% cooked.",
+            "Layer marinated chicken at bottom of pot.",
+            "Layer rice on top.",
+            "Drizzle saffron milk and ghee.",
+            "Seal pot with dough or foil. Cook on low heat (dum) for 30-40 mins."
+        ],
+        "time": "60 mins",
+        "difficulty": "Hard",
+        "description": "Layers of fragrant saffron rice and spiced chicken."
+    },
+    {
+        "id": "17",
+        "name": "Egg Curry",
+        "region": "Pan-Indian",
+        "ingredients": [
+            "4 eggs, boiled",
+            "2 onions, finely chopped",
+            "2 tomatoes, puree",
+            "1 tsp ginger-garlic paste",
+            "1 tsp red chili powder",
+            "1 tsp coriander powder",
+            "1/2 tsp turmeric"
+        ],
+        "steps": [
+            "Peel boiled eggs and prick with fork. Shallow fry them lightly with turmeric.",
+            "In same pan, sauté onions and ginger-garlic.",
+            "Add tomato puree and spices.",
+            "Cook until gravy thickens.",
+            "Add eggs and simmer for 5 mins."
+        ],
+        "time": "25 mins",
+        "difficulty": "Easy",
+        "description": "Boiled eggs in a spicy tomato-onion gravy."
+    },
+    {
+        "id": "18",
+        "name": "Baingan Bharta",
+        "region": "North Indian",
+        "ingredients": [
+            "1 large eggplant (bharta baingan)",
+            "2 onions, chopped",
+            "2 tomatoes, chopped",
+            "Green chilies",
+            "Garlic, minced",
+            "Coriander leaves"
+        ],
+        "steps": [
+            "Roast eggplant on open flame until skin is charred and flesh is soft.",
+            "Peel skin and mash the flesh.",
+            "Heat oil, sauté garlic, onions, and chilies.",
+            "Add tomatoes and cook until soft.",
+            "Add mashed eggplant, salt, and spices. Cook for 5 mins to blend flavors."
+        ],
+        "time": "30 mins",
+        "difficulty": "Medium",
+        "description": "Smoky mashed eggplant stir-fry."
+    },
+    {
+        "id": "19",
+        "name": "Gajar Ka Halwa",
+        "region": "North Indian (Dessert)",
+        "ingredients": [
+            "500g carrots, grated (red carrots preferred)",
+            "500ml milk",
+            "1/2 cup sugar",
+            "2 tbsp ghee",
+            "Cardamom powder",
+            "Nuts (cashews, almonds)"
+        ],
+        "steps": [
+            "Heat ghee, roast nuts and set aside.",
+            "Add grated carrots and sauté for 5 mins.",
+            "Add milk and cook on medium heat until milk evaporates (approx 20 mins).",
+            "Add sugar and cook until mixture thickens.",
+            "Add cardamom and roasted nuts."
+        ],
+        "time": "45 mins",
+        "difficulty": "Medium",
+        "description": "Sweet carrot pudding made with milk and ghee."
+    },
+    {
+        "id": "20",
+        "name": "Rasam",
+        "region": "South Indian",
+        "ingredients": [
+            "1 lemon-sized tamarind ball, soaked",
+            "2 tomatoes, chopped",
+            "1 tsp rasam powder",
+            "1/2 tsp pepper-cumin crushed",
+            "Garlic cloves, crushed",
+            "Mustard seeds",
+            "Coriander leaves"
+        ],
+        "steps": [
+            "Extract tamarind juice.",
+            "Boil tamarind water with tomatoes, rasam powder, garlic, and salt.",
+            "Once raw smell goes, add more water to desired consistency.",
+            "Bring to frothy boil (don't overboil). Add crushed pepper-cumin.",
+            "Temper with mustard seeds and curry leaves. Garnish with coriander."
+        ],
+        "time": "15 mins",
+        "difficulty": "Easy",
+        "description": "Tangy and spicy tamarind soup, good for digestion."
+    }
+]
