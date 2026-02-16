@@ -5,6 +5,10 @@ export async function POST(req: NextRequest) {
   try {
     const { input, source_language_code, target_language_code = "en-IN" } = await req.json();
 
+    if (!input || typeof input !== "string") {
+        return NextResponse.json({ error: "Invalid input text" }, { status: 400 });
+    }
+
     const apiKey = process.env.SARVAM_API_KEY;
     if (!apiKey) {
       return NextResponse.json({ error: "SARVAM_API_KEY mismatch" }, { status: 500 });

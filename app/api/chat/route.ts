@@ -3,6 +3,10 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(req: NextRequest) {
   try {
     const { ingredients, cuisine, language = "Hindi" } = await req.json();
+
+    if (!ingredients || !Array.isArray(ingredients) || ingredients.length === 0) {
+      return NextResponse.json({ error: "Ingredients must be a valid non-empty list" }, { status: 400 });
+    }
     const apiKey = process.env.SARVAM_API_KEY;
 
     if (!apiKey) {

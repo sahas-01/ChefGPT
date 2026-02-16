@@ -5,6 +5,10 @@ export async function POST(req: NextRequest) {
   try {
     const { text, language = "hi-IN", speaker = "shubh" } = await req.json();
 
+    if (!text || typeof text !== "string") {
+      return NextResponse.json({ error: "Text is required and must be a string" }, { status: 400 });
+    }
+
     const apiKey = process.env.SARVAM_API_KEY;
     if (!apiKey) {
       return NextResponse.json(

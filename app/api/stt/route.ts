@@ -6,8 +6,8 @@ export async function POST(req: NextRequest) {
     const formData = await req.formData();
     const file = formData.get("file");
 
-    if (!file) {
-      return NextResponse.json({ error: "No file provided" }, { status: 400 });
+    if (!file || !(file instanceof Blob)) {
+      return NextResponse.json({ error: "No valid file provided" }, { status: 400 });
     }
 
     const apiKey = process.env.SARVAM_API_KEY;
