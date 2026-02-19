@@ -1,12 +1,12 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import { ArrowLeft, ChefHat, Sparkles, Volume2, StopCircle, RefreshCcw, Loader2, Globe } from "lucide-react";
+import { ArrowLeft, ChefHat, Volume2, StopCircle, RefreshCcw, Loader2, Globe } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { RecipeCard } from "@/components/recipe-card";
 import { toast } from "sonner";
-import { Card, CardContent } from "@/components/ui/card";
+import { AudioProvider, useAudioContext } from "@/contexts/audio-context";
 
 interface Recipe {
   id: string;
@@ -22,17 +22,27 @@ interface Recipe {
 import { useAiChef } from "@/hooks/use-ai-chef";
 
 export default function SuggestionsPage() {
+  return (
+    <AudioProvider>
+      <SuggestionsContent />
+    </AudioProvider>
+  );
+}
+
+function SuggestionsContent() {
   const [favorites, setFavorites] = useState<string[]>([]);
   const [generatedRecipes, setGeneratedRecipes] = useState<Recipe[]>([]);
   
+  const { isAnyPlaying, currentlyPlayingId, registerPlay, registerStop } = useAudioContext();
   const { 
     askAiChefAsync, 
-    // isChefThinking is removed in favor of local state
     chefResponse, 
     speak,
     translate,
     isTranslating 
   } = useAiChef();
+
+  const CHEF_AUDIO_ID = "chef-summary";
 
   // Local state for audio element to handle playing
   const [currentAudio, setCurrentAudio] = useState<HTMLAudioElement | null>(null);
@@ -132,22 +142,25 @@ export default function SuggestionsPage() {
       if (isPlaying && currentAudio) {
           currentAudio.pause();
           setIsPlaying(false);
+          registerStop();
           return;
       }
 
       try {
-          setIsPlaying(true); // Optimistic UI
+          setIsPlaying(true);
+          registerPlay(CHEF_AUDIO_ID);
           const data = await speak({ text, language: lang, speaker: "shubh" });
           
           if (data.audio) {
               const audio = new Audio(`data:audio/wav;base64,${data.audio}`);
               setCurrentAudio(audio);
               audio.play();
-              audio.onended = () => setIsPlaying(false);
+              audio.onended = () => { setIsPlaying(false); registerStop(); };
           }
       } catch (err) {
           console.error(err);
           setIsPlaying(false);
+          registerStop();
       }
   };
 
@@ -225,8 +238,8 @@ export default function SuggestionsPage() {
                     recipe={recipe} 
                     isFavorite={favorites.includes(recipe.id)}
                     onToggleFavorite={toggleFavorite}
-                    // For generated recipes, we assume all listed ingredients are relevant
                     matchingIngredients={recipe.ingredients}
+                    isAudioDisabled={isAnyPlaying && currentlyPlayingId !== recipe.id}
                   />
               ))}
           </div>

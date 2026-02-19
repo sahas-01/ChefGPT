@@ -1,13 +1,13 @@
 "use client";
 
 import { useState } from "react";
-// Import Globe icon
-import { Clock, ChefHat, Volume2, Heart, StopCircle, Loader2, Globe, Eye, X } from "lucide-react";
+import { Clock, ChefHat, Volume2, Heart, StopCircle, Loader2, Globe } from "lucide-react";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge"; 
 import { toast } from "sonner";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
+import { useAudioContext } from "@/contexts/audio-context";
 
 interface Recipe {
   id: string;
@@ -25,14 +25,16 @@ interface RecipeCardProps {
   isFavorite: boolean;
   onToggleFavorite: (id: string) => void;
   matchingIngredients?: string[];
+  isAudioDisabled?: boolean;
 }
 
 import { useAiChef } from "@/hooks/use-ai-chef";
 
-export function RecipeCard({ recipe, isFavorite, onToggleFavorite, matchingIngredients = [] }: RecipeCardProps) {
+export function RecipeCard({ recipe, isFavorite, onToggleFavorite, matchingIngredients = [], isAudioDisabled = false }: RecipeCardProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentAudio, setCurrentAudio] = useState<HTMLAudioElement | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { registerPlay, registerStop } = useAudioContext();
   
   // Translation state
   const [translatedRecipe, setTranslatedRecipe] = useState<Recipe | null>(null);
@@ -133,10 +135,12 @@ export function RecipeCard({ recipe, isFavorite, onToggleFavorite, matchingIngre
     if (isPlaying && currentAudio) {
       currentAudio.pause();
       setIsPlaying(false);
+      registerStop();
       return;
     }
 
     setIsPlaying(true);
+    registerPlay(recipe.id);
     toast.info(`Reading recipe for ${displayRecipe.name}...`);
 
     try {
@@ -161,12 +165,13 @@ export function RecipeCard({ recipe, isFavorite, onToggleFavorite, matchingIngre
         const audio = new Audio(`data:audio/wav;base64,${data.audio}`);
         setCurrentAudio(audio);
         audio.play();
-        audio.onended = () => setIsPlaying(false);
+        audio.onended = () => { setIsPlaying(false); registerStop(); };
       }
     } catch (err) {
       console.error(err);
       toast.error("Failed to read recipe.");
       setIsPlaying(false);
+      registerStop();
     }
   };
 
@@ -243,6 +248,8 @@ export function RecipeCard({ recipe, isFavorite, onToggleFavorite, matchingIngre
           variant={isPlaying ? "destructive" : "secondary"} 
           className="flex-1 gap-2 transition-all active:scale-95"
           onClick={handleReadAloud}
+          disabled={isAudioDisabled && !isPlaying}
+          title={isAudioDisabled && !isPlaying ? "Another recipe is being read" : undefined}
         >
           {isPlaying ? <><StopCircle className="w-4 h-4 ml-2 animate-pulse" /> Stop</> : <><Volume2 className="w-4 h-4" /> Read</>}
         </Button>
